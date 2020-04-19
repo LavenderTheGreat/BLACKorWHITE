@@ -1,0 +1,32 @@
+{
+
+    "manifest_version": 2,
+    "name": "BLACK or WHITE?",
+    "version": "1.0",
+  
+    "description": "A tool for further filtering down results on Spinsha.re at a glance. For search pages.",
+  
+    "icons": {
+      "48": "icon48.png",
+      "96": "icon96.png"
+    },
+  
+    "content_scripts": [
+        {
+            "matches": ["*://spinsha.re/*"],
+            "js": ["filter.js"]
+        }
+    ],
+
+    "options_ui": {
+        "page": "pages/config.html"
+    },
+
+    "permissions": ["storage"],
+     	
+    "web_accessible_resources": [
+        "icon48.png",
+        "inject.css",
+        "mi-visibility.svg"
+    ]
+}

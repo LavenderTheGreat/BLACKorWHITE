@@ -1,0 +1,16 @@
+.BW-Header{
+    opacity: 0.6;
+    size: 10px;
+    text-align:center;
+    width: 100%;
+    letter-spacing: 2px
+}
+
+.specialScroll{
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0,0,0,0.2) rgb(0,0,0,0);
+    direction: rtl;
+    padding-left:5px;
+}
