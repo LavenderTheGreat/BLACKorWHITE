@@ -2,6 +2,12 @@
 
 // https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro/35385518#35385518
 
+window.browser = (function () {
+    return window.msBrowser ||
+        window.browser ||
+        window.chrome;
+})();
+
 function htmlToElement(html) {
     var template = document.createElement('template');
     html = html.trim(); // Never return a text node of whitespace as the result
@@ -109,15 +115,15 @@ function filterList(enabledDiffs){
 
 function updateFiltering(){
     //console.log("TEST")
-    let get = browser.storage.local.get()
-    get.then(filterList, error);
+
+    let get = browserGetter(null, e => {filterList(e)})
 }
 
 // Icon updating
 
 function updateDiffIcon(diff){
-    let get = browser.storage.local.get(diff + "Enabled")
-    get.then(function(input) { visualUpdate(input, diff) }, error);
+    let get = browserGetter(diff + "Enabled", function(input) { visualUpdate(input, diff) })
+    
 }
 
 function visualUpdate(value, diff){
@@ -148,19 +154,16 @@ function toggleSetValue(currentValue, setting){
 
     //console.log(currentValue[setting + "Enabled"])
 
-    let set = browser.storage.local.set({
+    let set = browserSetter({
         [setting + "Enabled"]:!currentValue[setting + "Enabled"]
-    })
-    set.then(function(input) { updateDiffIcon(setting); updateFiltering() }, error);
-
+    }, function(input) { updateDiffIcon(setting); updateFiltering() })
 
 }
 
 function toggleDiff(setting){
     //console.log(setting)
 
-    let get = browser.storage.local.get(setting + "Enabled")
-    get.then(function(input) { toggleSetValue(input, setting) }, error);
+    let get = browserGetter(setting + "Enabled", function(input) { toggleSetValue(input, setting) })
 }
 
 function initIcon(diff) {
@@ -180,3 +183,23 @@ console.log("initiated")
 initIcon("visibility")
 
 updateFiltering()
+
+function browserGetter(value, runFunction) {
+    try{
+        browser.storage.local.get(value)
+        .then(runFunction)
+    }
+    catch{
+        browser.storage.local.get(value, runFunction)
+    }
+}
+
+function browserSetter(value, runFunction) {
+    try{
+        browser.storage.local.set(value)
+        .then(runFunction)
+    }
+    catch{
+        browser.storage.local.set(value, runFunction)
+    }
+}
