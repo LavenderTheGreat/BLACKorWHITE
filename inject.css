@@ -3,7 +3,10 @@
     size: 10px;
     text-align:center;
     width: 100%;
-    letter-spacing: 2px
+    letter-spacing: 2px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }
 
 .specialScroll{
