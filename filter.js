@@ -32,7 +32,7 @@ function error(error){
 document.body.append(htmlToElement('<link rel="stylesheet" href="' + browser.runtime.getURL("inject.css") + '">'))
 
 // Get the side bar to inject options into
-var sidebar = document.evaluate( "/html/body/main/aside/nav[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+var sidebar = document.evaluate( "/html/body/main/aside/nav[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
 //sidebar.append(htmlToElement('<a class="item " title="BLACK or WHITE" id="BoWconfig"><img src="' + browser.runtime.getURL("icon48.png") + '"></img></a>'))
 
@@ -41,8 +41,6 @@ var sidebar = document.evaluate( "/html/body/main/aside/nav[1]", document, null,
 sidebar.classList.add("specialScroll")
 
 // Add filter elements
-
-sidebar.append(htmlToElement('<div class="BW-Header"><br>FILTER</div>'))
 
 sidebar.append(htmlToElement('<a class="item " title="Toggle Easy" id="BoW-Easy"><img src="/assets/img/difficultyEasy.svg" style="width:32px"></img></a>'))
 
@@ -55,6 +53,8 @@ sidebar.append(htmlToElement('<a class="item " title="Toggle Expert" id="BoW-Ext
 sidebar.append(htmlToElement('<a class="item " title="Toggle XD" id="BoW-XD"><img src="/assets/img/difficultyXD.svg" style="width:32px"></img></a>'))
 
 sidebar.append(htmlToElement('<a class="item " title="Toggle hiding/fading items" id="BoW-visibility"><img src="' + browser.runtime.getURL("mi-visibility.svg") + '" style="width:32px"></img></a>'))
+
+sidebar.append(htmlToElement('<div class="BW-Header"><br>FILTER</div>'))
 
 // Filtering itself
 
