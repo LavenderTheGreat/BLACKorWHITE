@@ -54,7 +54,7 @@ sidebar.append(htmlToElement('<a class="item " title="Toggle XD" id="BoW-XD"><im
 
 sidebar.append(htmlToElement('<a class="item " title="Toggle hiding/fading items" id="BoW-visibility"><img src="' + browser.runtime.getURL("mi-visibility.svg") + '" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<div class="BW-Header"><br>FILTER</div>'))
+sidebar.append(htmlToElement('<div class="BW-Header">FILTER</div>'))
 
 // Filtering itself
 
