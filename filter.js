@@ -29,32 +29,34 @@ function error(error){
 }
 
 // Load CSS
-document.body.append(htmlToElement('<link rel="stylesheet" href="' + browser.runtime.getURL("inject.css") + '">'))
+document.body.prepend(htmlToElement('<link rel="stylesheet" href="' + browser.runtime.getURL("inject.css") + '">'))
 
 // Get the side bar to inject options into
-var sidebar = document.evaluate( "/html/body/main/aside/nav[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+var topbar = document.evaluate( "/html/body/main/aside/nav[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
-//sidebar.append(htmlToElement('<a class="item " title="BLACK or WHITE" id="BoWconfig"><img src="' + browser.runtime.getURL("icon48.png") + '"></img></a>'))
+//sidebar.prepend(htmlToElement('<a class="item " title="BLACK or WHITE" id="BoWconfig"><img src="' + browser.runtime.getURL("icon48.png") + '"></img></a>'))
 
 // Make sidebar have a lil scroll thing
 
-sidebar.classList.add("specialScroll")
+// sidebar.classList.add("specialScroll")
+topbar.prepend(htmlToElement('<div class="specialScroll"></div>'));
 
 // Add filter elements
+sidebar = document.querySelector(".specialScroll");
 
-sidebar.append(htmlToElement('<a class="item " title="Toggle Easy" id="BoW-Easy"><img src="/assets/img/difficultyEasy.svg" style="width:32px"></img></a>'))
+sidebar.prepend(htmlToElement('<a class="item " title="Toggle Easy" id="BoW-Easy"><img src="/assets/img/difficultyEasy.svg" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<a class="item " title="Toggle Normal" id="BoW-Normal"><img src="/assets/img/difficultyNormal.svg" style="width:32px"></img></a>'))
+sidebar.prepend(htmlToElement('<a class="item " title="Toggle Normal" id="BoW-Normal"><img src="/assets/img/difficultyNormal.svg" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<a class="item " title="Toggle Hard" id="BoW-Hard"><img src="/assets/img/difficultyHard.svg" style="width:32px"></img></a>'))
+sidebar.prepend(htmlToElement('<a class="item " title="Toggle Hard" id="BoW-Hard"><img src="/assets/img/difficultyHard.svg" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<a class="item " title="Toggle Expert" id="BoW-Extreme"><img src="/assets/img/difficultyExtreme.svg" style="width:32px"></img></a>'))
+sidebar.prepend(htmlToElement('<a class="item " title="Toggle Expert" id="BoW-Extreme"><img src="/assets/img/difficultyExtreme.svg" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<a class="item " title="Toggle XD" id="BoW-XD"><img src="/assets/img/difficultyXD.svg" style="width:32px"></img></a>'))
+sidebar.prepend(htmlToElement('<a class="item " title="Toggle XD" id="BoW-XD"><img src="/assets/img/difficultyXD.svg" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<a class="item " title="Toggle hiding/fading items" id="BoW-visibility"><img src="' + browser.runtime.getURL("mi-visibility.svg") + '" style="width:32px"></img></a>'))
+sidebar.prepend(htmlToElement('<a class="item " title="Toggle hiding/fading items" id="BoW-visibility"><img src="' + browser.runtime.getURL("mi-visibility.svg") + '" style="width:32px"></img></a>'))
 
-sidebar.append(htmlToElement('<div class="BW-Header">FILTER</div>'))
+sidebar.prepend(htmlToElement('<div class="BW-Header ">FILTER</div>'))
 
 // Filtering itself
 
