@@ -18,6 +18,12 @@
     direction: ltr;
     width: auto;
 }
+.specialScroll::-webkit-scrollbar {
+    display: none;
+}
+.specialScroll::-webkit-scrollbar-thumb {
+    display: none;
+}
 .items-right{
     min-width: 0;
 }
